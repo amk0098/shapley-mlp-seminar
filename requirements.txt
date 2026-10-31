@@ -1,0 +1,8 @@
+numpy
+pandas
+scikit-learn
+matplotlib
+seaborn
+jupyter
+shap
+# Add and pin torch only if PyTorch is selected.
