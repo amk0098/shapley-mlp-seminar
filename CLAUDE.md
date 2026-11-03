@@ -144,7 +144,7 @@ Goal: small, reproducible, explainable — not a big ML project.
 
 Repo layout:
 ```
-Shapley-analyse-seminar/
+shapley-mlp-seminar/
 ├── CLAUDE.md                 # this file (single source of project context)
 ├── README.md
 ├── requirements.txt          # pinned versions

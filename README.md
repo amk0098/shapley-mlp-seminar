@@ -51,4 +51,4 @@ jupyter notebook notebooks/demo.ipynb
 Scaffold only. No experimental results yet. Scope (theory only vs. practical demo) is still
 to be confirmed with the supervisor — see the open questions in CLAUDE.md §3.
 
-Related (separate project): [Heatrisk-shap-analysis](https://github.com/amk0098/Heatrisk-shap-analysis).
+Related (separate project): [heatrisk-shap-analysis](https://github.com/amk0098/heatrisk-shap-analysis).
