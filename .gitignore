@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Data (loaded via sklearn, not committed)
+data/*
+!data/README.md
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/

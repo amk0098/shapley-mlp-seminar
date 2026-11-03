@@ -1,23 +1,51 @@
-# Shapley Analysis of a Multi-Layer Perceptron (MLP)
+# Shapley-Analyse eines MLP
 
-**Seminar project — Bergische Universität Wuppertal**
+Seminar project — Bergische Universität Wuppertal (supervisor: Mathias Sure), talk on 1 Dec 2026.
 
-This repository contains the theoretical and experimental work for the seminar topic **Shapley-Analyse eines MLP**.
+**Central question:** Wie lassen sich die Vorhersagen eines MLP mithilfe von Shapley-Werten
+erklären — und wo liegen die Grenzen dieser Erklärungen?
 
-## Research question
-How can Shapley values explain individual predictions of a Multi-Layer Perceptron, which assumptions do explanations rely on, and what are their limitations?
+Full project context, roadmap, literature and open questions: [CLAUDE.md](CLAUDE.md).
 
-## Scope
-- MLP architecture, training and prediction
-- Cooperative game theory, Shapley values and axioms
-- SHAP methods: KernelSHAP, Deep SHAP and gradient-based explainers
-- Controlled, reproducible MLP experiment
-- Local/global interpretation, limitations and scientific discussion
+## Structure
 
-The HeatRisk-specific implementation is maintained separately in [heatrisk-shap-analysis](https://github.com/amk0098/Heatrisk-shapley-analye).
+| Path | Content |
+|---|---|
+| `CLAUDE.md` | Project context, roadmap, literature, talk outline |
+| `src/exact_shapley.py` | Exact (brute-force) Shapley values — skeleton with TODOs |
+| `tests/test_exact_shapley.py` | Toy games with known answers to check the implementation |
+| `notebooks/demo.ipynb` | Demo scaffold: data → MLP → exact Shapley → KernelSHAP → plots |
+| `figures/` | Exported plots for the slides |
+| `data/` | Nothing committed; datasets come from scikit-learn |
+
+## Setup
+
+```bash
+python3 -m venv .venv
+```
+
+```bash
+source .venv/bin/activate
+```
+
+```bash
+pip install -r requirements.txt
+```
+
+```bash
+pytest
+```
+
+The tests fail with `NotImplementedError` until the functions in `src/exact_shapley.py`
+are implemented — that is the first coding exercise.
+
+```bash
+jupyter notebook notebooks/demo.ipynb
+```
 
 ## Status
-Starter repository. No experimental result is claimed until generated, checked and documented.
 
-## Reproducibility
-Use a virtual environment, record package versions and random seeds, cite primary papers and official documentation. SHAP feature attribution is not causal inference.
+Scaffold only. No experimental results yet. Scope (theory only vs. practical demo) is still
+to be confirmed with the supervisor — see the open questions in CLAUDE.md §3.
+
+Related (separate project): [Heatrisk-shap-analysis](https://github.com/amk0098/Heatrisk-shap-analysis).
