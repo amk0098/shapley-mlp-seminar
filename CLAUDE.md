@@ -258,3 +258,4 @@ Bring Testatbogen, PDF + backup.
 |---|---|---|
 | 31.10.2026 | CLAUDE.md created | Book date, Zoom meeting, start MLP basics |
 | 01.11.2026 | Repo cleaned: old instruction files replaced by CLAUDE.md; scaffold (src skeleton, tests, notebook, pinned requirements) added | Book date, Zoom meeting, start MLP basics |
+| 03.11.2026 | Added slides/, report/, notes/ folders and LaTeX entries in .gitignore; removed personal details and Persian references from CLAUDE.md; updated links for repo renames; added MIT LICENSE | Book date, Zoom meeting, start MLP basics |
