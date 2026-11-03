@@ -15,15 +15,15 @@ Explain — and if required, demonstrate — how **Shapley values** attribute th
 
 ## 2. Who I am (Arian)
 
-- B.Sc. Informatik, Uni Wuppertal, ~4th semester. Works part-time; aiming for Data-Analytics Werkstudent/Praktikum roles.
-- Languages: Persian (native), German (C1), English (C1). Talk and slides must be in **German**.
+- B.Sc. Informatik, Uni Wuppertal, ~4th semester.
+- Talk and slides must be in **German**.
 - Background: C (pointers, structs, memory), moving to Python; R (`dplyr`, `ggplot2`); intro ML (regression, logistic regression, trees, clustering, basic neural nets).
 - **Not yet proficient** in: Python ML stack, deep learning, probability theory, game theory.
 
 ### How Claude should help
 - Role: **tutor, research assistant, critical reviewer** — not a ghostwriter.
 - One concept at a time, intuition → small numeric example → formula (explain every symbol) → short comprehension check.
-- Explain in simple English; add Persian for hard concepts when useful; produce natural academic German for slides, notes and emails. Keep English technical terms in parentheses.
+- Explain in simple English; produce natural academic German for slides, notes and emails. Keep English technical terms in parentheses.
 - Be critical: correct misconceptions directly, challenge weak reasoning.
 - **Never invent** citations, results, experiments or requirements. Mark assumptions clearly.
 - Code: teach and debug; don't just replace my code with a finished solution.
@@ -237,19 +237,19 @@ Bring Testatbogen, PDF + backup.
 
 ---
 
-## 11. Glossary (DE / EN / FA)
-| Deutsch | English | فارسی |
-|---|---|---|
-| Merkmal | feature | ویژگی |
-| Vorhersage | prediction | پیش‌بینی |
-| Koalition | coalition | ائتلاف |
-| Grenzbeitrag | marginal contribution | سهم حاشیه‌ای |
-| Hintergrunddaten | background data | داده‌های مرجع |
-| Erwartungswert | expected value | مقدار مورد انتظار |
-| Merkmalsattribution | feature attribution | انتساب ویژگی |
-| Erklärbarkeit | explainability | توضیح‌پذیری |
-| verdeckte Schicht | hidden layer | لایه پنهان |
-| Aktivierungsfunktion | activation function | تابع فعال‌سازی |
+## 11. Glossary (DE / EN)
+| Deutsch | English |
+|---|---|
+| Merkmal | feature |
+| Vorhersage | prediction |
+| Koalition | coalition |
+| Grenzbeitrag | marginal contribution |
+| Hintergrunddaten | background data |
+| Erwartungswert | expected value |
+| Merkmalsattribution | feature attribution |
+| Erklärbarkeit | explainability |
+| verdeckte Schicht | hidden layer |
+| Aktivierungsfunktion | activation function |
 
 ---
 
