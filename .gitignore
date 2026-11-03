@@ -16,3 +16,16 @@ data/*
 .DS_Store
 .vscode/
 .idea/
+
+# LaTeX build artefacts
+*.aux
+*.log
+*.out
+*.toc
+*.nav
+*.snm
+*.synctex.gz
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
