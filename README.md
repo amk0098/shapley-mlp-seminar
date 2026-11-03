@@ -17,6 +17,9 @@ Full project context, roadmap, literature and open questions: [CLAUDE.md](CLAUDE
 | `notebooks/demo.ipynb` | Demo scaffold: data → MLP → exact Shapley → KernelSHAP → plots |
 | `figures/` | Exported plots for the slides |
 | `data/` | Nothing committed; datasets come from scikit-learn |
+| `slides/` | Talk slides (30 min, German) and speaker notes |
+| `report/` | Written Ausarbeitung (if required) and `references.bib` |
+| `notes/` | Learning notes, literature notes, meeting notes |
 
 ## Setup
 
@@ -48,4 +51,4 @@ jupyter notebook notebooks/demo.ipynb
 Scaffold only. No experimental results yet. Scope (theory only vs. practical demo) is still
 to be confirmed with the supervisor — see the open questions in CLAUDE.md §3.
 
-Related (separate project): [Heatrisk-shap-analysis](https://github.com/amk0098/Heatrisk-shap-analysis).
+Related (separate project): [heatrisk-shap-analysis](https://github.com/amk0098/heatrisk-shap-analysis).

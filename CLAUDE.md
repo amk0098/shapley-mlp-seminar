@@ -15,15 +15,15 @@ Explain — and if required, demonstrate — how **Shapley values** attribute th
 
 ## 2. Who I am (Arian)
 
-- B.Sc. Informatik, Uni Wuppertal, ~4th semester. Works part-time; aiming for Data-Analytics Werkstudent/Praktikum roles.
-- Languages: Persian (native), German (C1), English (C1). Talk and slides must be in **German**.
+- B.Sc. Informatik, Uni Wuppertal, ~4th semester.
+- Talk and slides must be in **German**.
 - Background: C (pointers, structs, memory), moving to Python; R (`dplyr`, `ggplot2`); intro ML (regression, logistic regression, trees, clustering, basic neural nets).
 - **Not yet proficient** in: Python ML stack, deep learning, probability theory, game theory.
 
 ### How Claude should help
 - Role: **tutor, research assistant, critical reviewer** — not a ghostwriter.
 - One concept at a time, intuition → small numeric example → formula (explain every symbol) → short comprehension check.
-- Explain in simple English; add Persian for hard concepts when useful; produce natural academic German for slides, notes and emails. Keep English technical terms in parentheses.
+- Explain in simple English; produce natural academic German for slides, notes and emails. Keep English technical terms in parentheses.
 - Be critical: correct misconceptions directly, challenge weak reasoning.
 - **Never invent** citations, results, experiments or requirements. Mark assumptions clearly.
 - Code: teach and debug; don't just replace my code with a finished solution.
@@ -144,7 +144,7 @@ Goal: small, reproducible, explainable — not a big ML project.
 
 Repo layout:
 ```
-Shapley-analyse-seminar/
+shapley-mlp-seminar/
 ├── CLAUDE.md                 # this file (single source of project context)
 ├── README.md
 ├── requirements.txt          # pinned versions
@@ -237,19 +237,19 @@ Bring Testatbogen, PDF + backup.
 
 ---
 
-## 11. Glossary (DE / EN / FA)
-| Deutsch | English | فارسی |
-|---|---|---|
-| Merkmal | feature | ویژگی |
-| Vorhersage | prediction | پیش‌بینی |
-| Koalition | coalition | ائتلاف |
-| Grenzbeitrag | marginal contribution | سهم حاشیه‌ای |
-| Hintergrunddaten | background data | داده‌های مرجع |
-| Erwartungswert | expected value | مقدار مورد انتظار |
-| Merkmalsattribution | feature attribution | انتساب ویژگی |
-| Erklärbarkeit | explainability | توضیح‌پذیری |
-| verdeckte Schicht | hidden layer | لایه پنهان |
-| Aktivierungsfunktion | activation function | تابع فعال‌سازی |
+## 11. Glossary (DE / EN)
+| Deutsch | English |
+|---|---|
+| Merkmal | feature |
+| Vorhersage | prediction |
+| Koalition | coalition |
+| Grenzbeitrag | marginal contribution |
+| Hintergrunddaten | background data |
+| Erwartungswert | expected value |
+| Merkmalsattribution | feature attribution |
+| Erklärbarkeit | explainability |
+| verdeckte Schicht | hidden layer |
+| Aktivierungsfunktion | activation function |
 
 ---
 
@@ -258,3 +258,4 @@ Bring Testatbogen, PDF + backup.
 |---|---|---|
 | 31.10.2026 | CLAUDE.md created | Book date, Zoom meeting, start MLP basics |
 | 01.11.2026 | Repo cleaned: old instruction files replaced by CLAUDE.md; scaffold (src skeleton, tests, notebook, pinned requirements) added | Book date, Zoom meeting, start MLP basics |
+| 03.11.2026 | Added slides/, report/, notes/ folders and LaTeX entries in .gitignore; removed personal details and Persian references from CLAUDE.md; updated links for repo renames; added MIT LICENSE | Book date, Zoom meeting, start MLP basics |
