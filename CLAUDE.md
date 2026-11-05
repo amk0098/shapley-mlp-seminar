@@ -205,7 +205,7 @@ shapley-mlp-seminar/
 - [ ] Book 1 Dec in Moodle; check chair's official schedule (weekly from now on).
 - [x] Kick-off: requirements received 05.11.2026, table in §3 filled.
 - [ ] Ask Sure what "Shapley on the embeddings" means exactly (§3).
-- [ ] Choose dataset (classification, small tabular).
+- [x] Dataset chosen: HeatRisk (see §7).
 - [ ] Download Testatbogen.
 - [ ] Learn: MLP fundamentals (forward pass, activations, training) + XAI basics.
 - ✔ Checkpoint: I can explain an MLP and "local attribution" in 2 minutes in German.
