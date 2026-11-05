@@ -52,7 +52,7 @@ Explain — and if required, demonstrate — how **Shapley values** attribute th
 | Zoom meeting done? Date? | Requirements received 05.11.2026 |
 | Theory only, or practical MLP + dataset? | **Practical**: own MLP + own dataset |
 | Python implementation mandatory? | Yes, implied (train MLP, run DeepSHAP + KernelSHAP) |
-| Prescribed dataset / model? | No — free choice ("beliebig") |
+| Prescribed dataset / model? | No — free choice ("beliebig"). **Decided: HeatRisk data + PyTorch MLP** (see §7) |
 | Prescribed method (exact, KernelSHAP, DeepSHAP, …)? | **DeepSHAP and KernelSHAP**, on logits and embeddings |
 | Recommended literature? | |
 | Mathematical depth expected? | MLP layer as matrix-vector op + activation; Shapley formula incl. why factorials/subsets; 4 axioms (§10.1) |
@@ -143,8 +143,15 @@ Supervisor's recommendations override this list. Reading order: Molnar (Shapley 
 
 Goal: small, reproducible, explainable — not a big ML project.
 
-1. **Dataset:** free choice. Must be a **classification** task (logits are required). Small tabular, few features, so exact Shapley stays feasible for checking (e.g. scikit-learn *Wine* — 13 features, 3 classes; or *Breast Cancer* — 30 features, 2 classes). Includes a **dataset analysis** for the talk (size, features, classes, distributions, correlations). Standardise features (fit on training data only).
-2. **Model:** **PyTorch** MLP (needed for DeepSHAP; sklearn's MLP is not supported by DeepExplainer). 1–2 hidden layers; the last hidden layer = "embedding", output layer = logits. Report test score. Add `torch` to `requirements.txt` (pinned) when starting.
+**Decision (05.11.2026):** the practical part uses my own **HeatRisk** project. All MLP/SHAP code lives in
+[heatrisk-shap-analysis](https://github.com/amk0098/heatrisk-shap-analysis); this repo keeps theory, slides,
+notes and the hand-written `src/exact_shapley.py` (used to check the SHAP results). `notebooks/demo.ipynb`
+is now redundant and will be removed later.
+
+1. **Dataset:** DWD daily climate data, 5 cities (via [heatrisk-deutschland](https://github.com/amk0098/heatrisk-deutschland)). Binary classification: next day `TXK ≥ 30 °C`. **7 features** (TMK, TXK, TNK, VPM, UPM, TXK_lag_1, TXK_rolling_3). Chronological split (train ≤ 2020, val 2021–23, test 2024–25). Includes a **dataset analysis** for the talk. Standardise features (fit on training data only).
+   - Pros: data pipeline and baselines (LogReg, Random Forest) already exist; 2^7 = 128 coalitions → exact Shapley cheap; intuitive for a mixed audience.
+   - Risks: strongly correlated temperature features (→ discuss in §5.5 limitations); ~3.7 % heat days in test (→ class weights, precision/recall/F1/PR-AUC); raw `-999` missing values (verify loader); time.
+2. **Model:** small **PyTorch** MLP (needed for DeepSHAP; sklearn's MLP is not supported by DeepExplainer). 1–2 hidden layers; last hidden layer = "embedding" (e.g. 8–16 units); output = **one logit** (binary task). Report test metrics and compare with the existing baselines.
 3. **Exact Shapley by hand** (brute force over 2^M coalitions, interventional with background sample) for one prediction — shows I understand the formula.
 4. **KernelSHAP and DeepSHAP** on the same instances, for **logits** and **embeddings** → compare with exact values; check efficiency property (sum = f(x) − baseline).
 4b. **Runtime:** measure analysis time vs. number of explained samples (batch size), background size and number of features — needed for the supervisor's runtime question.
@@ -284,3 +291,4 @@ Bring Testatbogen, PDF + backup.
 | 01.11.2026 | Repo cleaned: old instruction files replaced by CLAUDE.md; scaffold (src skeleton, tests, notebook, pinned requirements) added | Book date, Zoom meeting, start MLP basics |
 | 03.11.2026 | Added slides/, report/, notes/ folders and LaTeX entries in .gitignore; removed personal details and Persian references from CLAUDE.md; updated links for repo renames; added MIT LICENSE | Book date, Zoom meeting, start MLP basics |
 | 05.11.2026 | Supervisor requirements recorded (notes/meetings/2026-11-05-kickoff.md); §3, §7, §8, §9, §10 updated: practical part with PyTorch MLP, DeepSHAP + KernelSHAP on logits and embeddings | Clarify "embeddings" with Sure; choose dataset; Phase 1 theory |
+| 05.11.2026 | Decided: HeatRisk data + PyTorch MLP for the practical part (code in heatrisk-shap-analysis); §3 and §7 updated | Clarify "embeddings" with Sure; Phase 1 theory |
