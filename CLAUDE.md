@@ -37,23 +37,32 @@ Explain — and if required, demonstrate — how **Shapley values** attribute th
 - Presentation date **1 December** agreed by email (book in Moodle).
 - Zoom kick-off **Thursday 11:00** accepted.
 - Seminar format (from chair slides „Voodoo in wissenschaftlichen Vorträgen?“, April 2026): **30-minute talk**, mixed audience (ET, IT, Wi-Ing).
+- **Supervisor requirements received 05.11.2026** (verbatim in `notes/meetings/2026-11-05-kickoff.md`):
+  1. Train **any MLP on any dataset** of my choice.
+  2. Explain the **MLP architecture** and how it is built for the chosen task.
+  3. Explain the **mathematics of Shapley values**.
+  4. **Analyse and explain the dataset** ("damit man weiß, wo man sich überhaupt bewegt").
+  5. Apply Shapley values to the **embeddings** and to the **logits**, demonstrated with **DeepSHAP and KernelSHAP**.
+  6. Be able to answer the 7 supervisor questions (§10.1).
 
-### Open ❓ (fill in after the Zoom meeting)
+### Open questions
 | Question | Answer |
 |---|---|
 | Moodle date booked? | |
-| Zoom meeting done? Date? | |
-| Theory only, or practical MLP + dataset? | |
-| Python implementation mandatory? | |
-| Prescribed dataset / model? | |
-| Prescribed method (exact, KernelSHAP, DeepSHAP, …)? | |
+| Zoom meeting done? Date? | Requirements received 05.11.2026 |
+| Theory only, or practical MLP + dataset? | **Practical**: own MLP + own dataset |
+| Python implementation mandatory? | Yes, implied (train MLP, run DeepSHAP + KernelSHAP) |
+| Prescribed dataset / model? | No — free choice ("beliebig"). **Decided: HeatRisk data + PyTorch MLP** (see §7) |
+| Prescribed method (exact, KernelSHAP, DeepSHAP, …)? | **DeepSHAP and KernelSHAP**, on logits and embeddings |
 | Recommended literature? | |
-| Mathematical depth expected? | |
+| Mathematical depth expected? | MLP layer as matrix-vector op + activation; Shapley formula incl. why factorials/subsets; 4 axioms (§10.1) |
 | Written Ausarbeitung required? Length? Deadline? | |
 | Assessment focus? | |
 | Q&A length after the talk? | |
 
-**Rule:** Until this table is filled, treat the scope as *theory + small demo (likely)*, but don't start large implementation work.
+| What exactly is "Shapley on the embeddings"? | **Unclear — ask Sure.** (a) players = input features, explained output = each embedding unit of a hidden layer; or (b) players = embedding dimensions, explained output = logits (SHAP's DeepExplainer can explain a hidden layer this way). |
+
+**Scope (from 05.11.2026):** practical part confirmed — keep it small and reproducible (§7). Talk length assumed unchanged at 30 min.
 
 ---
 
@@ -130,14 +139,22 @@ Supervisor's recommendations override this list. Reading order: Molnar (Shapley 
 
 ---
 
-## 7. Possible practical demo (only if confirmed)
+## 7. Practical part (confirmed 05.11.2026)
 
 Goal: small, reproducible, explainable — not a big ML project.
 
-1. **Dataset:** small tabular, few features (e.g. scikit-learn *California Housing* — 8 features, regression; or *Breast Cancer* — classification). Standardise features.
-2. **Model:** `sklearn.neural_network.MLPRegressor` (1–2 hidden layers) — or PyTorch if DeepSHAP is required. Report test score.
+**Decision (05.11.2026):** the practical part uses my own **HeatRisk** project. All MLP/SHAP code lives in
+[heatrisk-shap-analysis](https://github.com/amk0098/heatrisk-shap-analysis); this repo keeps theory, slides,
+notes and the hand-written `src/exact_shapley.py` (used to check the SHAP results). `notebooks/demo.ipynb`
+is now redundant and will be removed later.
+
+1. **Dataset:** DWD daily climate data, 5 cities (via [heatrisk-deutschland](https://github.com/amk0098/heatrisk-deutschland)). Binary classification: next day `TXK ≥ 30 °C`. **7 features** (TMK, TXK, TNK, VPM, UPM, TXK_lag_1, TXK_rolling_3). Chronological split (train ≤ 2020, val 2021–23, test 2024–25). Includes a **dataset analysis** for the talk. Standardise features (fit on training data only).
+   - Pros: data pipeline and baselines (LogReg, Random Forest) already exist; 2^7 = 128 coalitions → exact Shapley cheap; intuitive for a mixed audience.
+   - Risks: strongly correlated temperature features (→ discuss in §5.5 limitations); ~3.7 % heat days in test (→ class weights, precision/recall/F1/PR-AUC); raw `-999` missing values (verify loader); time.
+2. **Model:** small **PyTorch** MLP (needed for DeepSHAP; sklearn's MLP is not supported by DeepExplainer). 1–2 hidden layers; last hidden layer = "embedding" (e.g. 8–16 units); output = **one logit** (binary task). Report test metrics and compare with the existing baselines.
 3. **Exact Shapley by hand** (brute force over 2^M coalitions, interventional with background sample) for one prediction — shows I understand the formula.
-4. **KernelSHAP** (and DeepSHAP if PyTorch) on the same instance → compare with exact values; check efficiency property (sum = f(x) − baseline).
+4. **KernelSHAP and DeepSHAP** on the same instances, for **logits** and **embeddings** → compare with exact values; check efficiency property (sum = f(x) − baseline).
+4b. **Runtime:** measure analysis time vs. number of explained samples (batch size), background size and number of features — needed for the supervisor's runtime question.
 5. **Plots:** waterfall (one prediction), beeswarm/summary (global view), maybe dependence plot.
 6. **Experiments for discussion:** vary background size / content → how stable are the values? effect of correlated features.
 7. Fixed random seeds, `requirements.txt`, one notebook or script.
@@ -158,22 +175,23 @@ shapley-mlp-seminar/
 
 ---
 
-## 8. Draft talk outline (≈ 30 min, ~15 slides) — provisional
+## 8. Draft talk outline (≈ 30 min, ~16 slides) — provisional; timings to be cut in Phase 3
 
 | # | Folie | min |
 |---|---|---|
 | 1 | Titel | 0.5 |
 | 2 | Motivation: Black-Box-Modelle, Warum erklären? | 2 |
 | 3 | Fahrplan | 0.5 |
-| 4 | MLP in einer Folie | 2.5 |
+| 4 | Datensatz: Aufgabe, Merkmale, Klassen, Auffälligkeiten | 2 |
+| 4b | MLP-Architektur für die Aufgabe; Schicht als h = σ(Wx + b) | 2.5 |
 | 5 | XAI: lokal vs. global, Attribution | 2 |
 | 6 | Kooperative Spieltheorie: Spieler, Koalitionen, Auszahlung | 2.5 |
 | 7 | Shapley-Wert: Formel + Intuition | 3 |
 | 8 | Rechenbeispiel mit 3 Merkmalen | 3 |
 | 9 | Axiome (Effizienz, Symmetrie, Dummy, Additivität) | 1.5 |
 | 10 | Von Spieltheorie zum MLP: Wertfunktion & Hintergrunddaten | 2.5 |
-| 11 | Berechnung: exakt vs. KernelSHAP vs. DeepSHAP | 2.5 |
-| 12 | Demo / Ergebnisse (Waterfall + Summary-Plot) | 3 |
+| 11 | Berechnung: exakt vs. KernelSHAP vs. DeepSHAP (DeepLIFT), Laufzeit | 2.5 |
+| 12 | Ergebnisse: Logits vs. Embeddings, DeepSHAP vs. KernelSHAP | 3 |
 | 13 | Grenzen & kritische Diskussion | 2.5 |
 | 14 | Zusammenfassung & Ausblick | 1.5 |
 | 15 | Quellen | — |
@@ -185,7 +203,9 @@ shapley-mlp-seminar/
 
 ### Phase 0 — Klärung (Sa 31.10. – Do 05.11.)
 - [ ] Book 1 Dec in Moodle; check chair's official schedule (weekly from now on).
-- [ ] Confirm Zoom invite (Thursday 11:00) — fill table in §3 right after the meeting.
+- [x] Kick-off: requirements received 05.11.2026, table in §3 filled.
+- [ ] Ask Sure what "Shapley on the embeddings" means exactly (§3).
+- [x] Dataset chosen: HeatRisk (see §7).
 - [ ] Download Testatbogen.
 - [ ] Learn: MLP fundamentals (forward pass, activations, training) + XAI basics.
 - ✔ Checkpoint: I can explain an MLP and "local attribution" in 2 minutes in German.
@@ -198,8 +218,8 @@ shapley-mlp-seminar/
 - ✔ Checkpoint: I can derive every symbol of the formula and explain the baseline.
 
 ### Phase 2 — Anwendung & Demo (Fr 13.11. – Do 19.11.)
-- [ ] (If practical work confirmed) Python setup, dataset, train MLP.
-- [ ] Exact Shapley implementation for small M; KernelSHAP/DeepSHAP comparison.
+- [ ] Python setup (add pinned torch), dataset analysis, train PyTorch MLP.
+- [ ] Exact Shapley implementation for small M; KernelSHAP/DeepSHAP on logits and embeddings; runtime measurements.
 - [ ] Figures (vector/PNG high-res), background-sensitivity experiment.
 - [ ] Read critical papers [KVS+20], [AJL21]/[SN20].
 - ✔ Checkpoint: results reproducible; I can explain what each plot does *and does not* mean.
@@ -223,7 +243,18 @@ Bring Testatbogen, PDF + backup.
 
 ---
 
-## 10. Likely questions to prepare
+## 10. Questions to prepare
+
+### 10.1 Required by the supervisor (must answer confidently)
+1. **MLP-Grundformel:** eine Schicht als Matrix-Vektor-Operation + Aktivierungsfunktion.
+2. **Spieltheoretischer Ursprung:** kooperative Spieltheorie; Features als „Spieler“.
+3. **Shapley-Formel:** Aufbau; warum Fakultäten und alle Teilmengen.
+4. **Logits vs. Embeddings:** Unterschied der Shapley-Werte auf Klassen-Scores vs. latenten Embeddings.
+5. **Approximation:** wie Sampling (KernelSHAP) bzw. DeepSHAP (über DeepLIFT) das Laufzeitproblem lösen.
+6. **Laufzeit:** Einflussfaktoren auf die Rechenzeit; Skalierung mit der Batch-Größe.
+7. **Die 4 Axiome:** Effizienz, Symmetrie, Dummy, Additivität.
+
+### 10.2 Further likely questions
 1. Warum nicht einfach die Gewichte des MLP interpretieren?
 2. Was genau ist der Baseline-Wert, und wie wählt man die Hintergrunddaten?
 3. Warum ist die exakte Berechnung exponentiell teuer?
@@ -259,3 +290,5 @@ Bring Testatbogen, PDF + backup.
 | 31.10.2026 | CLAUDE.md created | Book date, Zoom meeting, start MLP basics |
 | 01.11.2026 | Repo cleaned: old instruction files replaced by CLAUDE.md; scaffold (src skeleton, tests, notebook, pinned requirements) added | Book date, Zoom meeting, start MLP basics |
 | 03.11.2026 | Added slides/, report/, notes/ folders and LaTeX entries in .gitignore; removed personal details and Persian references from CLAUDE.md; updated links for repo renames; added MIT LICENSE | Book date, Zoom meeting, start MLP basics |
+| 05.11.2026 | Supervisor requirements recorded (notes/meetings/2026-11-05-kickoff.md); §3, §7, §8, §9, §10 updated: practical part with PyTorch MLP, DeepSHAP + KernelSHAP on logits and embeddings | Clarify "embeddings" with Sure; choose dataset; Phase 1 theory |
+| 05.11.2026 | Decided: HeatRisk data + PyTorch MLP for the practical part (code in heatrisk-shap-analysis); §3 and §7 updated | Clarify "embeddings" with Sure; Phase 1 theory |
