@@ -1,8 +1,13 @@
 # Slides
 
-Talk slides for the seminar (30 minutes, German).
+Slides of the seminar talk „Shapley-Analyse eines MLP“ (German, 30 minutes, 1 December 2026).
 
-- Outline and timing: see `CLAUDE.md` §8.
-- Chair rules: font ≥ 18 pt, sans-serif, 3–5 points per slide, page numbers, sources directly on the slide (`CLAUDE.md` §4).
-- `speaker-notes.md`: keywords per slide, not a script to read.
-- Export a PDF version for the talk and keep a backup.
+| File | Content |
+|---|---|
+| `Shapley_MLP_Vortrag.pptx` | the deck: 29 slides for the talk, sources (slides 30–32) and reserve slides for questions (33–38) |
+| `Shapley_MLP_Vortrag.pdf` | PDF export of the deck |
+| `speaker-notes.md` | speaker notes of every slide, extracted from the deck |
+
+All result figures in the deck come from
+[heatrisk-shap-analysis](https://github.com/amk0098/heatrisk-shap-analysis) (`outputs/figures/slides/`, tag
+`v1.0-talk`). The [paper](../paper/) explains every slide in more depth; Appendix B.5 maps slides to sections.

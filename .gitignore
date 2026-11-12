@@ -1,31 +1,15 @@
+# LaTeX / pandoc build artefacts
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+
 # Python
 __pycache__/
-*.py[cod]
-.pytest_cache/
 .venv/
-venv/
-
-# Jupyter
-.ipynb_checkpoints/
-
-# Data (loaded via sklearn, not committed)
-data/*
-!data/README.md
 
 # OS / editor
 .DS_Store
 .vscode/
 .idea/
-
-# LaTeX build artefacts
-*.aux
-*.log
-*.out
-*.toc
-*.nav
-*.snm
-*.synctex.gz
-*.bbl
-*.blg
-*.fdb_latexmk
-*.fls

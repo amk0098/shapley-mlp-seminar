@@ -1,6 +1,4 @@
 # Notes
 
-Learning notes and meeting notes.
-
-- `meetings/`: one file per meeting with the supervisor (date, decisions, open questions).
-- `literature-notes.md`: notes on papers and books while reading.
+- `meetings/`: notes of meetings with the supervisor (date, requirements, open questions). The kick-off note
+  keeps the requirements in their original German wording; Appendix B.1 of the paper summarises them in English.
