@@ -37,7 +37,6 @@ Start with the [introduction](paper/01_introduction.md) and [how to read this pa
 |---|---|
 | `paper/` | the paper as Markdown chapters, its figures, `build.sh` and the built `paper.pdf` |
 | `slides/` | the deck of the talk (`.pptx`, `.pdf`) and its speaker notes |
-| `notes/meetings/` | kick-off note with the original requirements |
 
 ## Related repositories
 

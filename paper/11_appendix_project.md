@@ -5,7 +5,7 @@
 The seminar is held at the chair of automation technology / computer science of the Bergische Universität
 Wuppertal: a 30-minute talk in German for a mixed audience (electrical engineering, computer science,
 industrial engineering), roughly 12–18 slides plus reserve slides. The supervisor's requirements, received on
-5 November 2026 (original wording in German in [`notes/meetings/`](../notes/meetings/)), were:
+5 November 2026 (in German; paraphrased here), were:
 
 1. Train any MLP on any dataset.
 2. Explain the architecture of the MLP and how it is built for the chosen task.
