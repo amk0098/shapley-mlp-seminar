@@ -34,7 +34,9 @@ and seven questions the speaker must be able to answer:
 | 10 Nov | Theory guide written (the basis of Part I of this paper) |
 | 11 Nov | Audit of the source data pipeline; MLP trained (Run 1); exact Shapley values (Run 2); KernelSHAP and DeepSHAP compared (Run 3) |
 | 12 Nov | Runtime (Run 4), background sensitivity (Run 5), embeddings (Run 6), slide figures, full reproduction from a fresh clone (Run 7); slides filled with results; code repository prepared for publication |
-| 12 Nov – | This paper; rehearsals of the talk |
+| 12 Nov | This paper |
+| 19 Nov | Meeting with the supervisor: embeddings approach confirmed; requested a short explanation of how an MLP works with a visual of the trained network, and a clear statement that Shapley values describe the model, not the real world |
+| 21 Nov | Final slides: MLP overview, network with real activations (Run 8), "why not the weights", "model, not the world", a prepared audience question |
 | 1 Dec | Talk |
 
 ## B.3 Decisions
@@ -54,28 +56,29 @@ and seven questions the speaker must be able to answer:
 
 | Repository | Content |
 |---|---|
-| [shapley-mlp-seminar](https://github.com/amk0098/shapley-mlp-seminar) (this one) | this paper, the slides of the talk with speaker notes, meeting notes |
-| [heatrisk-shap-analysis](https://github.com/amk0098/heatrisk-shap-analysis) | all code, tests, results and figures of Part II; experiment log (Runs 1–7), methodology, data audit; tag `v1.0-talk` = state used in the talk |
+| [shapley-mlp-seminar](https://github.com/amk0098/shapley-mlp-seminar) (this one) | this paper and the slides of the talk |
+| [heatrisk-shap-analysis](https://github.com/amk0098/heatrisk-shap-analysis) | all code, tests, results and figures of Part II; experiment log (Runs 1–8), methodology, data audit; tag `v1.0-talk` = state used in the talk |
 | [heatrisk-deutschland](https://github.com/amk0098/heatrisk-deutschland) | source project: DWD data, loader, features, split and baselines (commit `9974c0e`) |
 | [mlp-shap-pipeline](https://github.com/amk0098/mlp-shap-pipeline) | follow-up project (design phase): the same analysis automated for any trained MLP, producing a SHAP report |
 
 **Where each number comes from.** Model metrics: Run 1; exact values and ranking: Run 2; KernelSHAP/DeepSHAP
 comparison, convergence and example days: Run 3; runtime: Run 4; background: Run 5; embeddings: Run 6;
-reproducibility: Run 7 — all in `docs/experiment_log.md` of heatrisk-shap-analysis, each with the code revision
+reproducibility: Run 7; network figures of the final slides: Run 8 — all in `docs/experiment_log.md` of heatrisk-shap-analysis, each with the code revision
 that produced it. The embedding-table identity of Section 7.2 was checked on the saved arrays of Runs 2 and 6.
 
 ## B.5 From the talk to this paper
 
 | Talk (German slides) | Paper |
 |---|---|
-| Motivation, dataset, MLP architecture | Sections 1, 2.3, 9, 10 |
+| Motivation, dataset, how an MLP works, the HeatRisk MLP, why weights do not explain | Sections 1, 2, 9, 10 |
 | Cooperative games, Shapley formula, worked example, axioms | Sections 3, 4 |
 | Value function and background | Section 5 |
 | Exact, KernelSHAP, DeepSHAP | Section 6 |
 | Results on the logit, waterfalls, beeswarm | Section 11 |
 | Embeddings | Sections 7, 12 |
 | Runtime | Sections 8, 13 |
-| Limitations, summary | Sections 14–16 |
+| Limitations, "model, not the world", summary | Sections 14–16 (esp. 15.2) |
+| Prepared audience question: retraining with another seed | Section 15.3 |
 | Reserve slides (convergence, background, derivations) | Sections 11.3, 14, Appendix A |
 
 The talk necessarily simplifies; where they differ, this paper is the more precise version.

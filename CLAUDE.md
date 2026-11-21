@@ -14,7 +14,7 @@ with exercises), a case study and the documentation of the project.
   Part I theory (MLP, Shapley value, axioms, value function, exact/KernelSHAP/DeepSHAP, logits vs. embeddings,
   runtime model), Part II case study (7 → 16 → 8 → 1 MLP on DWD heat-day data), Part III discussion, appendices
   (solutions, project documentation, formula summary, self-test).
-- `slides/`: deck (`.pptx`, `.pdf`) and speaker notes.
+- `slides/`: deck (`.pptx` with speaker notes, `.pdf`).
 
 ## Rules
 - Every number in the paper must come from a run in `docs/experiment_log.md` of heatrisk-shap-analysis; update
